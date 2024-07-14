@@ -1,7 +1,7 @@
 /* General styles for Cat Browser */
 body {
     font-family: 'Comic Sans MS', cursive, sans-serif;
-    background-color: #ffe4e1;
+    background-color: #e0f7e9;
     margin: 0;
     padding: 0;
     display: flex;
@@ -14,8 +14,8 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    background-color: #ff69b4;
-    border-bottom: 2px solid #ff1493;
+    background-color: #4caf50;
+    border-bottom: 2px solid #388e3c;
 }
 
 header h1 {
@@ -28,7 +28,7 @@ header input {
     flex-grow: 1;
     margin: 0 10px;
     padding: 10px;
-    border: 2px solid #ff1493;
+    border: 2px solid #388e3c;
     border-radius: 5px;
     box-sizing: border-box;
 }
@@ -37,7 +37,7 @@ header button,
 header a {
     margin-left: 10px;
     padding: 10px 15px;
-    background-color: #ff1493;
+    background-color: #388e3c;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -47,16 +47,14 @@ header a {
 
 header button:hover,
 header a:hover {
-    background-color: #ff69b4;
+    background-color: #66bb6a;
 }
 
 main {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    background-image: url('cat-background.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-color: #e0f7e9;
 }
 
 iframe {
@@ -84,14 +82,14 @@ main {
 
 h2 {
     margin-top: 0;
-    color: #ff1493;
+    color: #388e3c;
 }
 
 input[type="text"] {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
-    border: 2px solid #ff1493;
+    border: 2px solid #388e3c;
     border-radius: 5px;
     box-sizing: border-box;
 }
@@ -99,7 +97,7 @@ input[type="text"] {
 button {
     padding: 10px 15px;
     margin-top: 10px;
-    background-color: #ff1493;
+    background-color: #388e3c;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -107,10 +105,10 @@ button {
 }
 
 button:hover {
-    background-color: #ff69b4;
+    background-color: #66bb6a;
 }
 
 #code-message {
     margin-top: 10px;
-    color: #ff1493;
+    color: #388e3c;
 }
