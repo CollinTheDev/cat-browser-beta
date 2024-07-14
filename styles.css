@@ -1,6 +1,7 @@
 /* General styles for Cat Browser */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background-color: #ffe4e1;
     margin: 0;
     padding: 0;
     display: flex;
@@ -13,28 +14,49 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    background-color: #f8f8f8;
-    border-bottom: 1px solid #ddd;
+    background-color: #ff69b4;
+    border-bottom: 2px solid #ff1493;
 }
 
 header h1 {
     margin: 0;
+    color: #fff;
+    font-size: 24px;
 }
 
 header input {
     flex-grow: 1;
     margin: 0 10px;
-    padding: 5px;
+    padding: 10px;
+    border: 2px solid #ff1493;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
-header button {
+header button,
+header a {
     margin-left: 10px;
+    padding: 10px 15px;
+    background-color: #ff1493;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+header button:hover,
+header a:hover {
+    background-color: #ff69b4;
 }
 
 main {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    background-image: url('cat-background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 iframe {
@@ -51,29 +73,44 @@ iframe {
     color: red;
     text-align: center;
     padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 /* Styles for settings page */
 main {
     padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 h2 {
     margin-top: 0;
+    color: #ff1493;
 }
 
 input[type="text"] {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
+    border: 2px solid #ff1493;
+    border-radius: 5px;
     box-sizing: border-box;
 }
 
 button {
-    padding: 10px;
+    padding: 10px 15px;
     margin-top: 10px;
+    background-color: #ff1493;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ff69b4;
 }
 
 #code-message {
     margin-top: 10px;
+    color: #ff1493;
 }
