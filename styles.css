@@ -1,7 +1,8 @@
 /* General styles for Cat Browser */
 body {
     font-family: 'Comic Sans MS', cursive, sans-serif;
-    background-color: #e0f7e9;
+    background-color: #333;
+    color: #fff;
     margin: 0;
     padding: 0;
     display: flex;
@@ -14,8 +15,8 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    background-color: #4caf50;
-    border-bottom: 2px solid #388e3c;
+    background-color: #555;
+    border-bottom: 2px solid #444;
 }
 
 header h1 {
@@ -27,16 +28,18 @@ header h1 {
 header input[type="text"] {
     margin: 0 10px;
     padding: 10px;
-    border: 2px solid #388e3c;
+    border: 2px solid #444;
     border-radius: 5px;
     box-sizing: border-box;
+    background-color: #666;
+    color: #fff;
 }
 
 header button,
 header a {
     margin-left: 10px;
     padding: 10px 15px;
-    background-color: #388e3c;
+    background-color: #444;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -46,14 +49,14 @@ header a {
 
 header button:hover,
 header a:hover {
-    background-color: #66bb6a;
+    background-color: #666;
 }
 
 main {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    background-color: #e0f7e9;
+    background-color: #333;
 }
 
 iframe {
@@ -80,13 +83,15 @@ iframe {
 }
 
 .gcse-search .gsc-input {
-    border: 2px solid #388e3c;
+    border: 2px solid #444;
     border-radius: 5px;
     padding: 5px;
+    background-color: #666;
+    color: #fff;
 }
 
 .gcse-search .gsc-search-button {
-    background-color: #388e3c;
+    background-color: #444;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -94,5 +99,46 @@ iframe {
 }
 
 .gcse-search .gsc-search-button:hover {
-    background-color: #66bb6a;
+    background-color: #666;
+}
+
+/* Styles for settings page */
+main {
+    padding: 20px;
+    background-color: #333;
+}
+
+h2 {
+    margin-top: 0;
+    color: #fff;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #444;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #666;
+    color: #fff;
+}
+
+button {
+    padding: 10px 15px;
+    margin-top: 10px;
+    background-color: #444;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #666;
+}
+
+#code-message {
+    margin-top: 10px;
+    color: #fff;
 }
