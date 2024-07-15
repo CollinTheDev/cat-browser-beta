@@ -3,41 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Cat Browser</title>
+    <title>Login</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyAOK2H7XklP-_ng407mj___hy3Fy9InNtk",
-            authDomain: "bettercord-e4e7d.firebaseapp.com",
-            projectId: "bettercord-e4e7d",
-            storageBucket: "bettercord-e4e7d.appspot.com",
-            messagingSenderId: "934430756781",
-            appId: "1:934430756781:web:faedd45b79251803721b24"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-    </script>
 </head>
 <body>
-    <header>
-        <h1>Login</h1>
-        <a href="index.html">Back to Browser</a>
-    </header>
-    <main>
-        <form id="login-form">
+    <div id="login-form">
+        <h2>Login</h2>
+        <form id="login">
             <label for="email">Email:</label>
             <input type="email" id="email" required>
             <label for="password">Password:</label>
             <input type="password" id="password" required>
             <button type="submit">Login</button>
         </form>
-        <p id="login-message" class="hidden"></p>
-    </main>
+        <p id="login-message"></p>
+        <a href="register.html">Don't have an account? Register</a>
+    </div>
+
+    <script src="firebase.js"></script>
     <script src="login.js"></script>
 </body>
 </html>
