@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cat Browser</title>
-    <link rel="stylesheet" href="styles.css" id="theme-link">
+    <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link id="theme-link" rel="stylesheet" href="theme-light.css">
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script>
         // Your web app's Firebase configuration
@@ -20,27 +22,54 @@
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
+        var auth = firebase.auth();
         var db = firebase.firestore();
     </script>
+    <script async src="https://cse.google.com/cse.js?cx=f2273923066c8425f"></script>
 </head>
 <body>
     <header>
         <h1>Cat Browser</h1>
-        <input type="text" id="url" placeholder="Enter URL">
-        <button id="go">Go</button>
-        <button id="back">Back</button>
-        <button id="forward">Forward</button>
-        <button id="add-favorite">Add to Favorites</button>
-        <a href="redirect.html">Domain Management</a>
-        <a href="settings.html"><button id="settings-icon">Settings</button></a>
+        <div id="auth-section" class="hidden">
+            <button id="login-btn">Login</button>
+            <button id="register-btn">Register</button>
+        </div>
+        <div id="browser-section" class="hidden">
+            <input type="text" id="url" placeholder="Enter URL">
+            <button id="go">Go</button>
+            <button id="back">Back</button>
+            <button id="forward">Forward</button>
+            <button id="add-favorite">Add to Favorites</button>
+            <a href="redirect.html">Domain Management</a>
+            <button id="settings-icon">Settings</button>
+        </div>
     </header>
     <main>
-        <!-- Google Custom Search Engine -->
-
         <iframe id="webpage" src="" frameborder="0"></iframe>
         <div id="error-message" class="hidden">This site cannot be displayed in an iframe.</div>
     </main>
+    <div class="gcse-search"></div>
+
+    <!-- Modal for entering code -->
+    <div id="settings-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Enter Access Code</h2>
+            <input type="text" id="access-code" placeholder="Enter your code">
+            <button id="submit-code">Submit</button>
+            <p id="code-message" class="hidden"></p>
+            <div id="theme-selection" class="hidden">
+                <h2>Choose Your Theme</h2>
+                <div>
+                    <div class="theme-button" data-theme="theme-light.css">Light Theme</div>
+                    <div class="theme-button" data-theme="theme-dark.css">Dark Theme</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
+    <script src="settings.js"></script>
+    <script src="auth.js"></script>
 </body>
 </html>
