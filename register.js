@@ -1,4 +1,9 @@
+// Wait for DOM content to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
+    // Ensure Firebase functions are available
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
     const registerForm = document.getElementById('register');
     const registerMessage = document.getElementById('register-message');
 
@@ -7,7 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
 
-        firebase.auth().createUserWithEmailAndPassword(email, password)
+        // Register the user with Firebase Authentication
+        auth.createUserWithEmailAndPassword(email, password)
             .then((userCredential) => {
                 // Registration successful
                 const user = userCredential.user;
