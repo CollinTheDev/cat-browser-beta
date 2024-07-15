@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const codeMessage = document.getElementById('code-message');
     const themeSelection = document.getElementById('theme-selection');
     const themeButtons = document.querySelectorAll('.theme-button');
+    const userId = 'defaultUser';  // Replace with actual user management if needed
 
     // Show theme selection if access code is valid
     submitCodeButton.addEventListener('click', () => {
@@ -19,18 +20,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Apply selected theme and save to local storage
+    // Apply selected theme and save to Firestore
     themeButtons.forEach(button => {
         button.addEventListener('click', () => {
             const theme = button.getAttribute('data-theme');
             document.getElementById('theme-link').href = theme;
-            localStorage.setItem('theme', theme);
+            db.collection('users').doc(userId).set({
+                theme: theme
+            }, { merge: true });
         });
     });
 
     // Load and apply saved theme
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        document.getElementById('theme-link').href = savedTheme;
-    }
+    db.collection('users').doc(userId).get().then((doc) => {
+        if (doc.exists) {
+            const data = doc.data();
+            if (data.theme) {
+                document.getElementById('theme-link').href = data.theme;
+            }
+        }
+    });
 });
