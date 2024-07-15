@@ -18,12 +18,17 @@ document.addEventListener('DOMContentLoaded', () => {
     auth.onAuthStateChanged(user => {
         if (user) {
             userId = user.uid;
+            console.log('User ID:', userId);
             db.collection('users').doc(userId).get().then(doc => {
                 if (doc.exists) {
                     const userData = doc.data();
+                    console.log('User data:', userData);
                     document.getElementById('theme-link').href = userData.theme;
-                    // Load and display user data
+                } else {
+                    console.log('No user data found.');
                 }
+            }).catch(error => {
+                console.error('Error fetching user data:', error);
             });
         } else {
             // User is not signed in, redirect or show login
@@ -61,9 +66,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 db.collection('users').doc(userId).update({
                     accessLevel: accessCode === 'prem9024' ? 'premium' : 'staff'
                 }).then(() => {
+                    console.log('Access level updated.');
                     codeMessage.textContent = 'Access granted!';
                     codeMessage.classList.remove('hidden');
                     showThemeSelection();
+                }).catch(error => {
+                    console.error('Error updating access level:', error);
                 });
             }
         } else {
@@ -79,7 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 db.collection('users').doc(userId).update({
                     theme: themeUrl
                 }).then(() => {
+                    console.log('Theme updated:', themeUrl);
                     document.getElementById('theme-link').href = themeUrl;
+                }).catch(error => {
+                    console.error('Error updating theme:', error);
                 });
             }
         });
