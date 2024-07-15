@@ -1,0 +1,15 @@
+// Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyAOK2H7XklP-_ng407mj___hy3Fy9InNtk",
+    authDomain: "bettercord-e4e7d.firebaseapp.com",
+    projectId: "bettercord-e4e7d",
+    storageBucket: "bettercord-e4e7d.appspot.com",
+    messagingSenderId: "934430756781",
+    appId: "1:934430756781:web:faedd45b79251803721b24"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Initialize Firestore
+var db = firebase.firestore();
