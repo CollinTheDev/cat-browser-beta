@@ -17,14 +17,12 @@
         <button id="add-favorite">Add to Favorites</button>
         <a href="redirect.html">Domain Management</a>
         <a href="settings.html"><button id="settings-icon">Settings</button></a>
-
-        <!-- Google Search Form -->
-        <form id="search-form" target="webpage">
-            <input type="text" id="search-query" placeholder="Search Google">
-            <button type="submit">Search</button>
-        </form>
     </header>
     <main>
+        <!-- Google Custom Search Engine -->
+        <script async src="https://cse.google.com/cse.js?cx=f2273923066c8425f"></script>
+        <div class="gcse-search"></div>
+
         <iframe id="webpage" src="" frameborder="0"></iframe>
         <div id="error-message" class="hidden">This site cannot be displayed in an iframe.</div>
     </main>
