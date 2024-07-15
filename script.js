@@ -1,60 +1,43 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const goButton = document.getElementById('go');
-    const backButton = document.getElementById('back');
-    const forwardButton = document.getElementById('forward');
-    const addFavoriteButton = document.getElementById('add-favorite');
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    const settingsIcon = document.getElementById('settings-icon');
+    const settingsModal = document.getElementById('settings-modal');
+    const closeButton = document.querySelector('.close-button');
+    const accessCodeInput = document.getElementById('access-code');
+    const submitCodeButton = document.getElementById('submit-code');
+    const codeMessage = document.getElementById('code-message');
+    const themeButtons = document.querySelectorAll('.theme-button');
+    const themeSelection = document.getElementById('theme-selection');
     const urlInput = document.getElementById('url');
+    const goButton = document.getElementById('go');
     const iframe = document.getElementById('webpage');
     const errorMessage = document.getElementById('error-message');
-    let userId = 'defaultUser';  // Default to non-logged-in user
+    let userId = null;
 
-    // Check if user is logged in
-    firebase.auth().onAuthStateChanged((user) => {
+    auth.onAuthStateChanged(user => {
         if (user) {
             userId = user.uid;
-            db.collection('users').doc(userId).get().then((doc) => {
+            db.collection('users').doc(userId).get().then(doc => {
                 if (doc.exists) {
-                    const data = doc.data();
-                    if (data.theme) {
-                        document.getElementById('theme-link').href = data.theme;
-                    }
+                    const userData = doc.data();
+                    document.getElementById('theme-link').href = userData.theme;
+                    // Load and display user data
                 }
             });
         } else {
-            // User is signed out
-            userId = 'defaultUser';
+            // User is not signed in, redirect or show login
+            window.location.href = 'login.html';
         }
     });
 
-    // Handle URL navigation
     goButton.addEventListener('click', () => {
-        const url = urlInput.value.trim();
+        const url = urlInput.value;
         if (url) {
             iframe.src = url;
         }
     });
 
-    // Handle back navigation
-    backButton.addEventListener('click', () => {
-        iframe.contentWindow.history.back();
-    });
-
-    // Handle forward navigation
-    forwardButton.addEventListener('click', () => {
-        iframe.contentWindow.history.forward();
-    });
-
-    // Handle adding to favorites
-    addFavoriteButton.addEventListener('click', () => {
-        const url = iframe.src;
-        if (url && userId !== 'defaultUser') {
-            db.collection('users').doc(userId).update({
-                favorites: firebase.firestore.FieldValue.arrayUnion(url)
-            });
-        }
-    });
-
-    // Handle iframe load error
     iframe.addEventListener('load', () => {
         errorMessage.classList.add('hidden');
     });
@@ -62,4 +45,47 @@ document.addEventListener('DOMContentLoaded', () => {
     iframe.addEventListener('error', () => {
         errorMessage.classList.remove('hidden');
     });
+
+    settingsIcon.addEventListener('click', () => {
+        settingsModal.classList.remove('hidden');
+    });
+
+    closeButton.addEventListener('click', () => {
+        settingsModal.classList.add('hidden');
+    });
+
+    submitCodeButton.addEventListener('click', () => {
+        const accessCode = accessCodeInput.value.trim();
+        if (accessCode === 'staff6924' || accessCode === 'prem9024') {
+            if (userId) {
+                db.collection('users').doc(userId).update({
+                    accessLevel: accessCode === 'prem9024' ? 'premium' : 'staff'
+                }).then(() => {
+                    codeMessage.textContent = 'Access granted!';
+                    codeMessage.classList.remove('hidden');
+                    showThemeSelection();
+                });
+            }
+        } else {
+            codeMessage.textContent = 'Invalid code!';
+            codeMessage.classList.remove('hidden');
+        }
+    });
+
+    themeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const themeUrl = button.getAttribute('data-theme');
+            if (userId) {
+                db.collection('users').doc(userId).update({
+                    theme: themeUrl
+                }).then(() => {
+                    document.getElementById('theme-link').href = themeUrl;
+                });
+            }
+        });
+    });
+
+    function showThemeSelection() {
+        themeSelection.classList.remove('hidden');
+    }
 });
