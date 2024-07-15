@@ -6,15 +6,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlInput = document.getElementById('url');
     const iframe = document.getElementById('webpage');
     const errorMessage = document.getElementById('error-message');
-    const userId = 'defaultUser';  // Replace with actual user management if needed
+    let userId = 'defaultUser';  // Default to non-logged-in user
 
-    // Load and apply saved theme
-    db.collection('users').doc(userId).get().then((doc) => {
-        if (doc.exists) {
-            const data = doc.data();
-            if (data.theme) {
-                document.getElementById('theme-link').href = data.theme;
-            }
+    // Check if user is logged in
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            userId = user.uid;
+            db.collection('users').doc(userId).get().then((doc) => {
+                if (doc.exists) {
+                    const data = doc.data();
+                    if (data.theme) {
+                        document.getElementById('theme-link').href = data.theme;
+                    }
+                }
+            });
+        } else {
+            // User is signed out
+            userId = 'defaultUser';
         }
     });
 
@@ -39,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle adding to favorites
     addFavoriteButton.addEventListener('click', () => {
         const url = iframe.src;
-        if (url) {
+        if (url && userId !== 'defaultUser') {
             db.collection('users').doc(userId).update({
                 favorites: firebase.firestore.FieldValue.arrayUnion(url)
             });
