@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then((userCredential) => {
                 // Registration successful
                 const user = userCredential.user;
+                console.log('User registered:', user);
                 registerMessage.textContent = 'Registration successful!';
                 registerMessage.style.color = 'green';
 
@@ -22,11 +23,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             })
             .then(() => {
+                console.log('User data saved to Firestore.');
                 setTimeout(() => {
                     window.location.href = 'index.html'; // Redirect to main page
                 }, 2000);
             })
             .catch((error) => {
+                console.error('Error during registration:', error);
                 registerMessage.textContent = `Error: ${error.message}`;
                 registerMessage.style.color = 'red';
             });
