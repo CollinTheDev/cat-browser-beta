@@ -37,27 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const url = urlInput.value;
         if (url && url !== 'https://cat-browser.cat' && url !== 'https://favorites.cat-browser.cat') {
             favorites.push(url);
-            renderFavorites();
+            db.collection('favorites').add({ url });
+            alert('Added to favorites!');
         }
     });
-
-    const favorites = []; // This should be fetched from Firebase if users are logged in
-
-    function renderFavorites() {
-        const favoritesList = document.getElementById('favorites-list');
-        favoritesList.innerHTML = '';
-        favorites.forEach((url) => {
-            const li = document.createElement('li');
-            const link = document.createElement('a');
-            link.href = '#';
-            link.textContent = url;
-            link.addEventListener('click', () => {
-                window.location.href = url;
-            });
-            li.appendChild(link);
-            favoritesList.appendChild(li);
-        });
-    }
-
-    renderFavorites();
 });
