@@ -63,25 +63,16 @@ iframe {
     margin-bottom: 10px;
 }
 
-.settings-container input[type="text"] {
-    margin-bottom: 10px;
-    padding: 5px;
-    width: 200px;
-}
-
 .settings-container button {
     padding: 5px 10px;
     background-color: darkgreen;
     color: white;
     border: none;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .settings-container button:hover {
     background-color: lightgreen;
     color: darkgreen;
-}
-
-.settings-container .premium {
-    display: none;
 }
