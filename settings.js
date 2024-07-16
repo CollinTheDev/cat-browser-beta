@@ -1,27 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const themeLightButton = document.getElementById('theme-light');
-    const themeDarkButton = document.getElementById('theme-dark');
-    const themeGreenButton = document.getElementById('theme-green');
-    const themeBlueButton = document.getElementById('theme-blue');
-    const themeRedButton = document.getElementById('theme-red');
+    const themeButtons = document.querySelectorAll('.settings-container button');
+    
+    // Apply saved theme if exists
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        document.getElementById('theme-style').href = savedTheme;
+    }
 
-    themeLightButton.addEventListener('click', () => {
-        document.getElementById('theme-style').href = 'theme-light.css';
-    });
+    themeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const theme = button.id.split('-')[1];
+            let themeFile = '';
 
-    themeDarkButton.addEventListener('click', () => {
-        document.getElementById('theme-style').href = 'theme-dark.css';
-    });
+            switch (theme) {
+                case 'light':
+                    themeFile = 'theme-light.css';
+                    break;
+                case 'dark':
+                    themeFile = 'theme-dark.css';
+                    break;
+                case 'green':
+                    themeFile = 'theme-green.css';
+                    break;
+                case 'blue':
+                    themeFile = 'theme-blue.css';
+                    break;
+                case 'red':
+                    themeFile = 'theme-red.css';
+                    break;
+            }
 
-    themeGreenButton.addEventListener('click', () => {
-        document.getElementById('theme-style').href = 'theme-green.css';
-    });
-
-    themeBlueButton.addEventListener('click', () => {
-        document.getElementById('theme-style').href = 'theme-blue.css';
-    });
-
-    themeRedButton.addEventListener('click', () => {
-        document.getElementById('theme-style').href = 'theme-red.css';
+            if (themeFile) {
+                document.getElementById('theme-style').href = themeFile;
+                localStorage.setItem('theme', themeFile);
+            }
+        });
     });
 });
