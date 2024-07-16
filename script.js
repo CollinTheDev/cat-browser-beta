@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
     addFavoriteButton.addEventListener('click', () => {
         const url = urlInput.value;
         if (url && url !== 'https://cat-browser.cat' && url !== 'https://favorites.cat-browser.cat') {
-            favorites.push(url);
             db.collection('favorites').add({ url });
             alert('Added to favorites!');
         }
