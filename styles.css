@@ -1,133 +1,113 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #e0f7e0; /* Light green background */
-    color: #333;
     margin: 0;
     padding: 0;
+    background-color: lightgreen;
 }
 
 header {
-    background-color: #4caf50; /* Green header */
-    color: #fff;
-    padding: 10px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    background-color: green;
+    padding: 10px;
 }
 
 header h1 {
+    color: white;
     margin: 0;
+    flex: 1;
 }
 
 header input[type="text"] {
-    width: 300px;
+    flex: 2;
+    margin: 0 10px;
     padding: 5px;
-    margin-right: 10px;
 }
 
-header button {
+header button, header a {
+    margin: 0 5px;
     padding: 5px 10px;
-    margin-right: 5px;
+    color: white;
+    background-color: darkgreen;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+header button:hover, header a:hover {
+    background-color: lightgreen;
+    color: darkgreen;
 }
 
 main {
-    padding: 20px;
+    height: calc(100vh - 50px);
 }
 
 iframe {
     width: 100%;
-    height: 80vh;
-    border: none;
+    height: 100%;
 }
 
 .hidden {
     display: none;
 }
 
-#register-form, #login-form, #theme-selection {
-    max-width: 400px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-input[type="text"], input[type="email"], input[type="password"] {
-    width: calc(100% - 20px);
-    padding: 8px;
-    margin-bottom: 10px;
-}
-
-button {
-    padding: 10px 15px;
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
 .modal {
-    display: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: fixed;
-    z-index: 1;
-    left: 0;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
-    padding-top: 60px;
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 5% auto;
+    background: white;
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 500px;
     border-radius: 5px;
+    text-align: center;
 }
 
 .close-button {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close-button:hover,
-.close-button:focus {
-    color: black;
-    text-decoration: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
     cursor: pointer;
 }
 
-.gcse-search {
-    margin-top: 10px;
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
 }
 
-.theme-button {
-    display: inline-block;
-    margin: 5px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.settings-container h2 {
+    margin-bottom: 10px;
+}
+
+.settings-container input[type="text"] {
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 200px;
+}
+
+.settings-container button {
+    padding: 5px 10px;
+    background-color: darkgreen;
+    color: white;
+    border: none;
     cursor: pointer;
 }
 
-.theme-button:hover {
-    background-color: #ddd;
+.settings-container button:hover {
+    background-color: lightgreen;
+    color: darkgreen;
+}
+
+.settings-container #theme-settings {
+    margin-top: 20px;
 }
