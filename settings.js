@@ -1,56 +1,44 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const submitCodeButton = document.getElementById('submit-code');
     const accessCodeInput = document.getElementById('access-code');
+    const submitCodeButton = document.getElementById('submit-code');
     const codeMessage = document.getElementById('code-message');
-    const themeSelection = document.getElementById('theme-selection');
-    const themeButtons = document.querySelectorAll('.theme-button');
-    let userId = 'defaultUser';
-
-    // Check if user is logged in
-    firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-            userId = user.uid;
-            db.collection('users').doc(userId).get().then((doc) => {
-                if (doc.exists) {
-                    const data = doc.data();
-                    if (data.accessLevel) {
-                        showThemeSelection();
-                    }
-                }
-            });
-        }
-    });
+    const themeSettings = document.getElementById('theme-settings');
+    const themeLightButton = document.getElementById('theme-light');
+    const themeDarkButton = document.getElementById('theme-dark');
 
     submitCodeButton.addEventListener('click', () => {
-        const accessCode = accessCodeInput.value.trim();
-        if (accessCode === 'staff6924' || accessCode === 'prem9024') {
-            db.collection('users').doc(userId).update({
-                accessLevel: accessCode === 'prem9024' ? 'premium' : 'staff'
-            }).then(() => {
-                codeMessage.textContent = 'Access granted!';
-                codeMessage.classList.remove('hidden');
-                showThemeSelection();
-            });
+        const code = accessCodeInput.value;
+        if (code === 'prem9024') {
+            themeSettings.classList.remove('hidden');
+            codeMessage.classList.add('hidden');
         } else {
-            codeMessage.textContent = 'Invalid code!';
+            codeMessage.textContent = 'Invalid code.';
+            codeMessage.style.color = 'red';
             codeMessage.classList.remove('hidden');
         }
     });
 
-    themeButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const themeUrl = button.getAttribute('data-theme');
-            if (userId !== 'defaultUser') {
-                db.collection('users').doc(userId).update({
-                    theme: themeUrl
-                }).then(() => {
-                    document.getElementById('theme-link').href = themeUrl;
-                });
-            }
-        });
+    themeLightButton.addEventListener('click', () => {
+        document.body.style.backgroundColor = 'lightgreen';
+        document.querySelector('header').style.backgroundColor = 'green';
+        localStorage.setItem('theme', 'light');
     });
 
-    function showThemeSelection() {
-        themeSelection.classList.remove('hidden');
+    themeDarkButton.addEventListener('click', () => {
+        document.body.style.backgroundColor = 'darkgreen';
+        document.querySelector('header').style.backgroundColor = 'black';
+        localStorage.setItem('theme', 'dark');
+    });
+
+    // Apply saved theme on load
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        if (savedTheme === 'light') {
+            document.body.style.backgroundColor = 'lightgreen';
+            document.querySelector('header').style.backgroundColor = 'green';
+        } else if (savedTheme === 'dark') {
+            document.body.style.backgroundColor = 'darkgreen';
+            document.querySelector('header').style.backgroundColor = 'black';
+        }
     }
 });
