@@ -4,43 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings - Cat Browser</title>
-    <link rel="stylesheet" href="styles.css" id="theme-link">
+    <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyAOK2H7XklP-_ng407mj___hy3Fy9InNtk",
-            authDomain: "bettercord-e4e7d.firebaseapp.com",
-            projectId: "bettercord-e4e7d",
-            storageBucket: "bettercord-e4e7d.appspot.com",
-            messagingSenderId: "934430756781",
-            appId: "1:934430756781:web:faedd45b79251803721b24"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        var db = firebase.firestore();
-    </script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+    <script src="firebase.js" defer></script>
+    <script src="settings.js" defer></script>
 </head>
 <body>
     <header>
         <h1>Settings</h1>
-        <a href="index.html">Back to Browser</a>
     </header>
     <main>
-        <h2>Enter Access Code</h2>
-        <input type="text" id="access-code" placeholder="Enter your code">
-        <button id="submit-code">Submit</button>
-        <p id="code-message" class="hidden"></p>
+        <div class="settings-container">
+            <h2>Enter Access Code</h2>
+            <input type="text" id="access-code" placeholder="Enter your code">
+            <button id="submit-code">Submit</button>
+            <p id="code-message" class="hidden"></p>
 
-        <!-- Theme customization section -->
-        <div id="theme-selection" class="hidden">
-            <h2>Select Theme</h2>
-            <button class="theme-button" data-theme="styles.css">Green Theme</button>
-            <button class="theme-button" data-theme="theme-dark.css">Dark Theme</button>
+            <div id="theme-settings" class="hidden">
+                <h2>Select Theme</h2>
+                <button id="theme-light">Light Theme</button>
+                <button id="theme-dark">Dark Theme</button>
+            </div>
         </div>
     </main>
-    <script src="settings.js"></script>
 </body>
 </html>
