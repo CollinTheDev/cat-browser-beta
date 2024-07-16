@@ -1,0 +1,26 @@
+body {
+    background-color: white;
+    color: black;
+}
+
+header {
+    background-color: lightgray;
+}
+
+header button, header a {
+    background-color: gray;
+}
+
+header button:hover, header a:hover {
+    background-color: white;
+    color: gray;
+}
+
+.settings-container button {
+    background-color: gray;
+}
+
+.settings-container button:hover {
+    background-color: lightgray;
+    color: gray;
+}
