@@ -1,25 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
     const favoritesList = document.getElementById('favorites-list');
-    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
-    const updateFavorites = () => {
+    const favorites = []; // This should be fetched from Firebase if users are logged in
+
+    function renderFavorites() {
         favoritesList.innerHTML = '';
-        favorites.forEach(fav => {
+        favorites.forEach((url) => {
             const li = document.createElement('li');
-            const a = document.createElement('a');
-            a.href = '#';
-            a.textContent = fav;
-            a.addEventListener('click', (e) => {
-                e.preventDefault(); // Prevent default anchor behavior
-                const iframe = window.parent.document.getElementById('webpage');
-                if (iframe) {
-                    iframe.src = fav;
-                }
+            const link = document.createElement('a');
+            link.href = '#';
+            link.textContent = url;
+            link.addEventListener('click', () => {
+                const iframe = parent.document.getElementById('webpage');
+                iframe.src = url;
             });
-            li.appendChild(a);
+            li.appendChild(link);
             favoritesList.appendChild(li);
         });
-    };
+    }
 
-    updateFavorites();
+    renderFavorites();
 });
