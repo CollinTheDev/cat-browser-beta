@@ -1,0 +1,26 @@
+body {
+    background-color: lightblue;
+    color: black;
+}
+
+header {
+    background-color: blue;
+}
+
+header button, header a {
+    background-color: darkblue;
+}
+
+header button:hover, header a:hover {
+    background-color: lightblue;
+    color: darkblue;
+}
+
+.settings-container button {
+    background-color: darkblue;
+}
+
+.settings-container button:hover {
+    background-color: lightblue;
+    color: darkblue;
+}
