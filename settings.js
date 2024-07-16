@@ -2,43 +2,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const accessCodeInput = document.getElementById('access-code');
     const submitCodeButton = document.getElementById('submit-code');
     const codeMessage = document.getElementById('code-message');
-    const themeSettings = document.getElementById('theme-settings');
+    const premiumButtons = document.querySelectorAll('.premium');
     const themeLightButton = document.getElementById('theme-light');
     const themeDarkButton = document.getElementById('theme-dark');
+    const themeBlueButton = document.getElementById('theme-blue');
+    const themeRedButton = document.getElementById('theme-red');
 
     submitCodeButton.addEventListener('click', () => {
         const code = accessCodeInput.value;
         if (code === 'prem9024') {
-            themeSettings.classList.remove('hidden');
-            codeMessage.classList.add('hidden');
+            premiumButtons.forEach(button => button.classList.remove('hidden'));
+            codeMessage.textContent = 'Premium themes unlocked!';
+            codeMessage.classList.remove('hidden');
         } else {
             codeMessage.textContent = 'Invalid code.';
-            codeMessage.style.color = 'red';
             codeMessage.classList.remove('hidden');
         }
     });
 
     themeLightButton.addEventListener('click', () => {
-        document.body.style.backgroundColor = 'lightgreen';
-        document.querySelector('header').style.backgroundColor = 'green';
-        localStorage.setItem('theme', 'light');
+        document.body.className = 'light-theme';
     });
 
     themeDarkButton.addEventListener('click', () => {
-        document.body.style.backgroundColor = 'darkgreen';
-        document.querySelector('header').style.backgroundColor = 'black';
-        localStorage.setItem('theme', 'dark');
+        document.body.className = 'dark-theme';
     });
 
-    // Apply saved theme on load
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        if (savedTheme === 'light') {
-            document.body.style.backgroundColor = 'lightgreen';
-            document.querySelector('header').style.backgroundColor = 'green';
-        } else if (savedTheme === 'dark') {
-            document.body.style.backgroundColor = 'darkgreen';
-            document.querySelector('header').style.backgroundColor = 'black';
-        }
-    }
+    themeBlueButton.addEventListener('click', () => {
+        document.body.className = 'blue-theme';
+    });
+
+    themeRedButton.addEventListener('click', () => {
+        document.body.className = 'red-theme';
+    });
 });
