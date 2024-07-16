@@ -1,38 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const accessCodeInput = document.getElementById('access-code');
-    const submitCodeButton = document.getElementById('submit-code');
-    const codeMessage = document.getElementById('code-message');
-    const premiumButtons = document.querySelectorAll('.premium');
     const themeLightButton = document.getElementById('theme-light');
     const themeDarkButton = document.getElementById('theme-dark');
+    const themeGreenButton = document.getElementById('theme-green');
     const themeBlueButton = document.getElementById('theme-blue');
     const themeRedButton = document.getElementById('theme-red');
 
-    submitCodeButton.addEventListener('click', () => {
-        const code = accessCodeInput.value;
-        if (code === 'prem9024') {
-            premiumButtons.forEach(button => button.classList.remove('hidden'));
-            codeMessage.textContent = 'Premium themes unlocked!';
-            codeMessage.classList.remove('hidden');
-        } else {
-            codeMessage.textContent = 'Invalid code.';
-            codeMessage.classList.remove('hidden');
-        }
-    });
-
     themeLightButton.addEventListener('click', () => {
-        document.body.className = 'light-theme';
+        document.getElementById('theme-style').href = 'theme-light.css';
     });
 
     themeDarkButton.addEventListener('click', () => {
-        document.body.className = 'dark-theme';
+        document.getElementById('theme-style').href = 'theme-dark.css';
+    });
+
+    themeGreenButton.addEventListener('click', () => {
+        document.getElementById('theme-style').href = 'theme-green.css';
     });
 
     themeBlueButton.addEventListener('click', () => {
-        document.body.className = 'blue-theme';
+        document.getElementById('theme-style').href = 'theme-blue.css';
     });
 
     themeRedButton.addEventListener('click', () => {
-        document.body.className = 'red-theme';
+        document.getElementById('theme-style').href = 'theme-red.css';
     });
 });
