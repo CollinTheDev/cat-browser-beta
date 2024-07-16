@@ -15,12 +15,3 @@ header button:hover, header a:hover {
     background-color: white;
     color: gray;
 }
-
-.settings-container button {
-    background-color: gray;
-}
-
-.settings-container button:hover {
-    background-color: lightgray;
-    color: gray;
-}
